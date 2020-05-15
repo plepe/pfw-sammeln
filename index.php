@@ -8,6 +8,10 @@ $form_data = form_init();
 
 if($form_data->is_complete()) {
   $id = form_save($form_data);
+
+  if ($id) {
+    messages_add("Danke für das Eintragen der Unterschriften. Bitte schreibe auf die Liste(n) das Kürzel \"" . htmlspecialchars($id) . "\", damit später nachvollziehbar ist, ob alle Unterschriftenlisten den Weg ins Büro geschafft haben.");
+  }
 }
 
 $body = $form_data->show();
@@ -26,8 +30,7 @@ $body = $form_data->show();
 print messages_print();
 
 if ($id) {
-  print "<p>Danke für das Eintragen der Unterschriften. Bitte schreibe auf die Liste(n) das Kürzel \"" . htmlspecialchars($id) . "\", damit später nachvollziehbar ist, ob alle Unterschriftenlisten den Weg ins Büro geschafft haben.</p>";
-  print "<a href='.'>Weitere Unterschriftenliste eintragen</a>";
+  print "<p><a href='.'>Weitere Unterschriftenliste eintragen</a></p>";
 }
 else {
 ?>
