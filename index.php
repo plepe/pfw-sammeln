@@ -2,7 +2,19 @@
 <?php include "modulekit/loader.php"; /* loads all php-includes */ ?>
 <?php call_hooks("init"); /* initialize submodules */ ?>
 <?php // App functionality
-$db = new PDOext($db_conf);
+if (!isset($db_conf)) {
+  print "\$db_conf has not been defined.";
+  exit(1);
+}
+
+try {
+  $db = new PDOext($db_conf);
+}
+catch (Exception $e) {
+  print "Can't connect to database: " . $e->getMessage();
+  exit(1);
+}
+
 if (!$db->tableExists('unterschriften_listen')) {
   $db->query(<<<EOT
 create table unterschriften_listen (
