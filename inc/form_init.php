@@ -12,10 +12,6 @@ function form_init () {
       "default" => Date('Y-m-d'),
       "req" => true,
     ),
-    "anmerkungen" => array(
-      "type" => "textarea",
-      "name" => "Anmerkungen",
-    ),
   );
 
   for ($i = 1; $i <= 23; $i++) {
@@ -24,6 +20,11 @@ function form_init () {
       "name" => "Unterschriften {$i}. Bezirk",
     );
   }
+
+  $form_def["anmerkungen"] = array(
+    "type" => "textarea",
+    "name" => "Anmerkungen",
+  );
 
   return new form("data", $form_def);
 }
