@@ -7,4 +7,7 @@ $include = array(
   'php' => array(
     'inc/*.php',
   ),
+  'css' => array(
+    'style.css',
+  ),
 );

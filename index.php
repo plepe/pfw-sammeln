@@ -36,10 +36,16 @@ else {
 ?>
     <form enctype='multipart/form-data' method='post'>
     <?php print $body ?>
-    <input type='submit' value='Submit'/>
+    <input id='submit' type='submit' value='Eintragen'/>
     </form>
 <?php
 }
 ?>
+<script>
+let submit_button = document.getElementById('submit')
+submit_button.onclick = () => {
+  submit_button.disabled = true
+}
+</script>
   </body>
 </html>
