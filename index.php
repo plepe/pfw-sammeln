@@ -54,6 +54,15 @@ $id_gen = new RandomIdGenerator(array(
   'chars' => 'ABCDEFGHJKLMNPQRTUVWXYZ0123456789',
   'length' => 4,
 ));
+$id_gen->setCheckFun(function ($id) {
+  global $db;
+
+  $res = $db->query("select count(*) as c from unterschriften_listen where id=" . $db->quote($id));
+  $elem = $res->fetch();
+  $res->closeCursor();
+
+  return !!$elem['c'];
+});
 
 $form_def = array(
   "sammlerin" => array(
