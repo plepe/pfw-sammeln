@@ -1,7 +1,7 @@
 <?php
 $name = "Platz für Wien - Unterschriften sammeln";
 
-$depend = array("modulekit-form");
+$depend = array("modulekit-form", "PDOext");
 
 $include = array(
   'php' => array(
