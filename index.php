@@ -3,11 +3,29 @@
 <?php call_hooks("init"); /* initialize submodules */ ?>
 <?php // App functionality
 $form_def = array(
-  "something" => array(
+  "sammlerin" => array(
     "type" => "text",
-    "name" => "Something"
+    "name" => "Sammler*in",
+    "req" => true,
+  ),
+  "datum" => array(
+    "type" => "date",
+    "name" => "Sammeldatum",
+    "default" => Date('Y-m-d'),
+    "req" => true,
+  ),
+  "anmerkungen" => array(
+    "type" => "textarea",
+    "name" => "Anmerkungen",
   ),
 );
+
+for ($i = 1; $i <= 23; $i++) {
+  $form_def[sprintf("1%02d0", $i)] = array(
+    "type" => "integer",
+    "name" => "Unterschriften {$i}. Bezirk",
+  );
+}
 $form_data = new form("data", $form_def);
 
 if($form_data->is_complete()) {
