@@ -6,6 +6,7 @@ $db = new PDOext($db_conf);
 if (!$db->tableExists('unterschriften_listen')) {
   $db->query(<<<EOT
 create table unterschriften_listen (
+  id            char(4)         not null primary key,
   sammlerin     tinytext        not null,
   datum         date            not null,
   anmerkungen   mediumtext      null,
@@ -36,6 +37,11 @@ create table unterschriften_listen (
 EOT
 );
 }
+
+$id_gen = new RandomIdGenerator(array(
+  'chars' => 'ABCDEFGHJKLMNPQRTUVWXYZ0123456789',
+  'length' => 4,
+));
 
 $form_def = array(
   "sammlerin" => array(
@@ -72,6 +78,7 @@ if($form_data->is_complete()) {
     }
   }
 
+  $set[] = "id=" . $db->quote($id_gen->get());
   $set = implode(', ', $set);
   $result = $db->query("insert into unterschriften_listen set {$set}");
   if (!$result) {

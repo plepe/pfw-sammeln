@@ -13,3 +13,6 @@
 [submodule "lib/modulekit/PDOext"]
 	path = lib/modulekit/PDOext
 	url = https://github.com/plepe/PDOext.git
+[submodule "lib/modulekit/random-id-generator"]
+	path = lib/modulekit/random-id-generator
+	url = https://github.com/plepe/random-id-generator
