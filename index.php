@@ -104,7 +104,7 @@ if($form_data->is_complete()) {
   $set = implode(', ', $set);
   $result = $db->query("insert into unterschriften_listen set {$set}");
   if (!$result) {
-    $error = "Fehler beim Eintragen in die Datenbank: " . $db->errorInfo()[2];
+    messages_debug("Fehler beim Eintragen in die Datenbank: " . $db->errorInfo()[2]);
   }
 }
 
@@ -128,16 +128,13 @@ $body = $form_data->show();
   </head>
   <body>
 <?php
-if (isset($error)) {
-  print $error;
-}
+print messages_print();
 
 if ($id) {
   print "<p>Danke für das Eintragen der Unterschriften. Bitte schreibe auf die Liste(n) das Kürzel \"" . htmlspecialchars($id) . "\", damit später nachvollziehbar ist, ob alle Unterschriftenlisten den Weg ins Büro geschafft haben.</p>";
   print "<a href='.'>Weitere Unterschriftenliste eintragen</a>";
 }
-
-if (!$form_data->is_complete()) {
+else {
 ?>
     <form enctype='multipart/form-data' method='post'>
     <?php print $body ?>
