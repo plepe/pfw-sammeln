@@ -22,6 +22,7 @@ function db_init () {
     id            char(4)         not null primary key,
     sammlerin     tinytext        not null,
     datum         date            not null,
+    eintrag_datum TIMESTAMP       not null DEFAULT CURRENT_TIMESTAMP,
     anmerkungen   mediumtext      null,
     plz1010       int4            not null default 0,
     plz1020       int4            not null default 0,
