@@ -43,7 +43,7 @@ print messages_print();
 let submit_button = document.getElementById('submit')
 if (submit_button) {
   submit_button.onclick = () => {
-    submit_button.disabled = true
+    setTimeout(() => submit_button.disabled = true, 0)
   }
 }
 </script>
