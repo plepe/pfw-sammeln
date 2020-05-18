@@ -15,18 +15,16 @@ if($form_data->is_complete()) {
 }
 
 $body = $form_data->show();
+$template = explode('@@', file_get_contents('template.html'));
+
+print $template[0];
 ?>
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>Platz für Wien - Unterschriften sammeln</title>
     <?php print modulekit_to_javascript(); /* pass modulekit configuration to JavaScript */ ?>
     <?php print modulekit_include_js(); /* prints all js-includes */ ?>
     <?php print modulekit_include_css(); /* prints all css-includes */ ?>
     <?php print_add_html_headers(); /* print additional html headers */ ?>
-  </head>
-  <body>
 <?php
+print $template[1];
 print messages_print();
 
 if ($id) {
@@ -47,5 +45,5 @@ submit_button.onclick = () => {
   submit_button.disabled = true
 }
 </script>
-  </body>
-</html>
+<?php
+print $template[2];
