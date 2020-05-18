@@ -1,5 +1,6 @@
 <?php include "conf.php"; /* load a local configuration */ ?>
 <?php include "modulekit/loader.php"; /* loads all php-includes */ ?>
+<?php session_start(); ?>
 <?php call_hooks("init"); /* initialize submodules */ ?>
 <?php // App functionality
 db_init();
@@ -11,10 +12,14 @@ if($form_data->is_complete()) {
 
   if ($id) {
     messages_add("Danke für das Eintragen der Unterschriften. Bitte schreibe auf die Liste(n) das Kürzel \"" . htmlspecialchars($id) . "\", damit später nachvollziehbar ist, ob alle Unterschriftenlisten den Weg ins Büro geschafft haben.");
+    page_reload();
   }
 }
 
-$body = $form_data->show();
+$body =
+  "Neue Unterschriftenliste eintragen:<br/>" .
+  $form_data->show();
+
 $template = explode('@@', file_get_contents('template.html'));
 
 print $template[0];
@@ -27,17 +32,12 @@ print $template[0];
 print $template[1];
 print messages_print();
 
-if ($id) {
-  print "<p><a href='.'>Weitere Unterschriftenliste eintragen</a></p>";
-}
-else {
 ?>
-    <form enctype='multipart/form-data' method='post'>
-    <?php print $body ?>
-    <input id='submit' type='submit' value='Eintragen'/>
-    </form>
+<form enctype='multipart/form-data' method='post'>
+<?php print $body ?>
+<input id='submit' type='submit' value='Eintragen'/>
+</form>
 <?php
-}
 ?>
 <script>
 let submit_button = document.getElementById('submit')
