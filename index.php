@@ -41,8 +41,10 @@ else {
 ?>
 <script>
 let submit_button = document.getElementById('submit')
-submit_button.onclick = () => {
-  submit_button.disabled = true
+if (submit_button) {
+  submit_button.onclick = () => {
+    submit_button.disabled = true
+  }
 }
 </script>
 <?php
