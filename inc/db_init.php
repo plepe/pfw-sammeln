@@ -9,7 +9,7 @@ function db_init () {
   }
 
   try {
-    $db = new PDOext($db_conf);
+    $db = new PDOext($db_conf, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
   }
   catch (Exception $e) {
     print "Can't connect to database: " . $e->getMessage();
