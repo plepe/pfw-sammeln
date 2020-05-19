@@ -36,6 +36,15 @@ if (!$req) {
   $body .= $table->show();
 }
 
+$count_homepage = '';
+if ($db->tableExists('wp_participants_database')) {
+  $count_homepage = $db->query("select * from wp_participants_database where last_accessed>='2020-04-15'")->rowCount();
+}
+
+$count_listen =
+  $db->query("select sum(plz1010 + plz1020 + plz1030 + plz1040 + plz1050 + plz1060 + plz1070 + plz1080 + plz1090 + plz1100 + plz1110 + plz1120 + plz1130 + plz1140 + plz1150 + plz1160 + plz1170 + plz1180 + plz1190 + plz1200 + plz1210 + plz1220 + plz1230) as sum from unterschriften_listen")->fetchAll()[0]['sum'];
+$body .= "<div>Aktueller Stand:<br/>Via Homepage: {$count_homepage}, via Unterschriftenlisten: {$count_listen}, Summe: ". ((int)$count_homepage + (int)$count_listen) . "</div>";
+
 $template = explode('@@', file_get_contents('template.html'));
 
 print $template[0];
