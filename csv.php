@@ -15,6 +15,7 @@ if (!$req) {
 $result = $req->fetchAll();
 
 Header('Content-Type: text/csv; charset=utf-8');
+Header('Content-Disposition: attachment; filename="platzfuerwien-listen.csv"');
 
 print chr(239) . chr(187) . chr(191); // BOM
 
