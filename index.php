@@ -4,21 +4,16 @@
 <?php call_hooks("init"); /* initialize submodules */ ?>
 <?php // App functionality
 db_init();
-$id_gen = rand_init();
-$form_data = form_init();
 
-if($form_data->is_complete()) {
-  $id = form_save($form_data);
+$body = '<ul><li><a href="enter.php">Neue Unterschriftenliste eintragen</a></li></ul>';
 
-  if ($id) {
-    messages_add("Danke für das Eintragen der Unterschriften. Bitte schreibe auf die Liste(n) das Kürzel \"" . htmlspecialchars($id) . "\", damit später nachvollziehbar ist, ob alle Unterschriftenlisten den Weg ins Büro geschafft haben.");
-    page_reload();
-  }
+$req = $db->query("select *, (plz1010 + plz1020 + plz1030 + plz1040 + plz1050 + plz1060 + plz1070 + plz1080 + plz1090 + plz1100 + plz1110 + plz1120 + plz1130 + plz1140 + plz1150 + plz1160 + plz1170 + plz1180 + plz1190 + plz1200 + plz1210 + plz1220 + plz1230) as sum from unterschriften_listen order by eintrag_datum desc limit 20");
+if (!$req) {
+  messages_debug("Fehler beim Eintragen in die Datenbank: " . $db->errorInfo()[2]);
+} else {
+  $result = $req->fetchAll();
+  $body .= '<pre>' . print_r($result, 1) . '</pre>';
 }
-
-$body =
-  "Neue Unterschriftenliste eintragen:<br/>" .
-  $form_data->show();
 
 $template = explode('@@', file_get_contents('template.html'));
 
@@ -33,19 +28,6 @@ print $template[1];
 print messages_print();
 
 ?>
-<form enctype='multipart/form-data' method='post'>
 <?php print $body ?>
-<input id='submit' type='submit' value='Eintragen'/>
-</form>
-<?php
-?>
-<script>
-let submit_button = document.getElementById('submit')
-if (submit_button) {
-  submit_button.onclick = () => {
-    setTimeout(() => submit_button.disabled = true, 0)
-  }
-}
-</script>
 <?php
 print $template[2];
