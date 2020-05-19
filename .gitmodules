@@ -16,3 +16,6 @@
 [submodule "lib/modulekit/random-id-generator"]
 	path = lib/modulekit/random-id-generator
 	url = https://github.com/plepe/random-id-generator
+[submodule "lib/modulekit/table"]
+	path = lib/modulekit/table
+	url = https://github.com/plepe/modulekit-table

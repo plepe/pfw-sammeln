@@ -12,7 +12,25 @@ if (!$req) {
   messages_debug("Fehler beim Eintragen in die Datenbank: " . $db->errorInfo()[2]);
 } else {
   $result = $req->fetchAll();
-  $body .= '<pre>' . print_r($result, 1) . '</pre>';
+
+  $table = new table(array(
+    'id' => array(
+      'name' => 'Kürzel',
+    ),
+    'sammlerin' => array(
+      'name' => 'Sammler*in',
+    ),
+    'datum' => array(
+      'name' => 'Datum',
+    ),
+    'sum' => array(
+      'name' => 'Gesamtanzahl',
+      'html_attributes' => 'style="text-align: right;"',
+    ),
+  ), $result);
+
+  $body .= "Neueste Eintragungen:";
+  $body .= $table->show();
 }
 
 $template = explode('@@', file_get_contents('template.html'));
