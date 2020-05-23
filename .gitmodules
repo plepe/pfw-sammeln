@@ -19,3 +19,9 @@
 [submodule "lib/modulekit/table"]
 	path = lib/modulekit/table
 	url = https://github.com/plepe/modulekit-table
+[submodule "lib/modulekit/lib"]
+	path = lib/modulekit/lib
+	url = https://github.com/plepe/modulekit-lib
+[submodule "lib/Twig"]
+	path = lib/Twig
+	url = https://github.com/twigphp/Twig.git

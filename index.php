@@ -25,12 +25,15 @@ if (!$req) {
     ),
     'datum' => array(
       'name' => 'Datum',
+      'format' => '{{ datum|date("D, j.n.Y") }}',
     ),
     'sum' => array(
       'name' => 'Gesamtanzahl',
       'html_attributes' => 'style="text-align: right;"',
     ),
-  ), $result);
+  ), $result, array(
+    'template_engine' => 'twig',
+  ));
 
   $body .= "Neueste Eintragungen:";
   $body .= $table->show();
