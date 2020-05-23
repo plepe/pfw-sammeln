@@ -102,7 +102,6 @@ if (!$req) {
     ),
     'sum' => array(
       'name' => 'Gesamtanzahl',
-      'html_attributes' => 'style="text-align: right;"',
     ),
     'anmerkungen' => array(
       'name' => 'Anmerkungen',

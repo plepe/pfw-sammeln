@@ -1,3 +1,20 @@
+td,
+td a.table_link {
+  line-height: 1;
+  text-align: left;
+  color: #3a3a3a;
+}
+td a.table_link {
+  text-decoration: underline;
+}
+table.transposed th {
+  width: 15em;
+  padding: 0 2px;
+}
+td[class^="plz"],
+td.sum {
+  text-align: right;
+}
 input:disabled {
   border: 2px solid #d0d0d0;
 }

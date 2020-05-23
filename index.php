@@ -30,7 +30,6 @@ if (!$req) {
     ),
     'sum' => array(
       'name' => 'Gesamtanzahl',
-      'html_attributes' => 'style="text-align: right;"',
     ),
   ), $result, array(
     'template_engine' => 'twig',
