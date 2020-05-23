@@ -10,7 +10,7 @@ $body = '<ul>' .
   '<li><a href="csv.php">Alles als CSV Datei exportieren</a></li>' .
   '</ul>';
 
-$req = $db->query("select *, (plz1010 + plz1020 + plz1030 + plz1040 + plz1050 + plz1060 + plz1070 + plz1080 + plz1090 + plz1100 + plz1110 + plz1120 + plz1130 + plz1140 + plz1150 + plz1160 + plz1170 + plz1180 + plz1190 + plz1200 + plz1210 + plz1220 + plz1230) as sum from unterschriften_listen order by eintrag_datum desc limit 20");
+$req = $db->query("select *, (plz1010 + plz1020 + plz1030 + plz1040 + plz1050 + plz1060 + plz1070 + plz1080 + plz1090 + plz1100 + plz1110 + plz1120 + plz1130 + plz1140 + plz1150 + plz1160 + plz1170 + plz1180 + plz1190 + plz1200 + plz1210 + plz1220 + plz1230) as sum from unterschriften_listen order by eintrag_datum desc");
 if (!$req) {
   messages_debug("Fehler beim Eintragen in die Datenbank: " . $db->errorInfo()[2]);
 } else {
