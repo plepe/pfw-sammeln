@@ -19,6 +19,7 @@ if (!$req) {
   $table = new table(array(
     'id' => array(
       'name' => 'Kürzel',
+      'link' => 'entry.php?id={{ id }}',
     ),
     'sammlerin' => array(
       'name' => 'Sammler*in',
