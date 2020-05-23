@@ -22,7 +22,7 @@ if (!$req) {
       'link' => 'entry.php?id={{ id }}',
     ),
     'sammlerin' => array(
-      'name' => 'Sammler*in',
+      'name' => 'Sammler*in(nen)',
     ),
     'datum' => array(
       'name' => 'Datum',

@@ -21,7 +21,7 @@ if (!$req) {
       'name' => 'Kürzel',
     ),
     'sammlerin' => array(
-      'name' => 'Sammler*in',
+      'name' => 'Sammler*in(nen)',
     ),
     'datum' => array(
       'name' => 'Datum',

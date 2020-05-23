@@ -3,7 +3,7 @@ function form_init () {
   $form_def = array(
     "sammlerin" => array(
       "type" => "text",
-      "name" => "Sammler*in",
+      "name" => "Sammler*in(nen)",
       "req" => true,
     ),
     "datum" => array(
