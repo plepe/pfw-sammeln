@@ -12,12 +12,15 @@ function form_save ($form_data) {
   }
 
   $id = $id_gen->get();
+
   $set[] = "id=" . $db->quote($id);
   $set = implode(', ', $set);
   $result = $db->query("insert into unterschriften_listen set {$set}");
   if (!$result) {
     messages_debug("Fehler beim Eintragen in die Datenbank: " . $db->errorInfo()[2]);
   }
+
+  file_put_contents("data/{$id}.json", json_encode($data));
 
   return $id;
 }
